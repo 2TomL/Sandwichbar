@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BOUM</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="img/favicon.jpg" type="image/jpg">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+      "three/examples/": "https://unpkg.com/three@0.158.0/examples/",
+      "cannon-es": "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <button class="music-toggle" id="music-toggle" aria-label="Toggle music">🔈</button>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="Volume slider">
+      <audio id="background-music" loop>
+        <source src="img/funkysuspense.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+      </audio>
+    <div class="logo">BOUM</div>
+  </div>
+  <nav class="nav-links">
+  <a href="#home" data-key="nav-home" id="home-link">Home</a>
+  <a href="#about" data-key="nav-about" id="about-link">About</a>
+  <a href="#menu" data-key="nav-menu" id="menu-link">Menu</a>
+  <a href="#blog" data-key="nav-blog" id="blog-link">Blog</a>
+  <a href="#location" data-key="nav-location" id="location-link">Location</a>
+      <select class="language-selector" id="language-select" aria-label="Select language">
+        <option value="en">EN</option>
+        <option value="nl">NL</option>
+        <option value="fr">FR</option>
+      </select>
+    </nav>
+    <div class="hamburger" id="hamburger">☰</div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home" data-key="nav-home">Home</a>
+    <a href="#about" data-key="nav-about">About</a>
+    <a href="#menu" data-key="nav-menu">Menu</a>
+    <a href="#blog" data-key="nav-blog">Blog</a>
+    <a href="#location" data-key="nav-location">Location</a>
+    <select class="language-selector" id="mobile-language-select" aria-label="Select language">
+      <option value="en">EN</option>
+      <option value="nl">NL</option>
+      <option value="fr">FR</option>
+    </select>
+  </div>
+
+  <section id="home" class="section home-section">
+  <div class="home-mobile-title">BOUM</div>
+  <div id="boum-3d-bg"></div>
+  <div id="scene"></div>
+</section>
+  <section id="about" class="section about-section">
+  <div class="about-container">
+
+    <div class="about-image-wrapper">
+      <div class="about-slideshow-container">
+        <button class="about-slideshow-arrow about-slideshow-arrow-left" aria-label="Vorige foto">&#10094;</button>
+        <div class="about-slideshow-track">
+          <img src="img/fod44.png" alt="Food 44" class="about-slideshow-image">
+          <img src="img/food12.png" alt="Food 12" class="about-slideshow-image">
+          <img src="img/fod44.png" alt="Food 44" class="about-slideshow-image">
+          <img src="img/food12.png" alt="Food 12" class="about-slideshow-image">
+          <img src="img/fod44.png" alt="Food 44" class="about-slideshow-image">
+          <img src="img/food12.png" alt="Food 12" class="about-slideshow-image">
+          <img src="img/About.jpg" alt="About BOUM" class="about-slideshow-image">
+          <img src="img/food22.png" alt="Food 22" class="about-slideshow-image">
+          <img src="img/food33.png" alt="Food 33" class="about-slideshow-image">
+          <img src="img/fod44.png" alt="Food 44" class="about-slideshow-image">
+          <img src="img/food12.png" alt="Food 12" class="about-slideshow-image">
+          <img src="img/fod44.png" alt="Food 44" class="about-slideshow-image">
+          <img src="img/food12.png" alt="Food 12" class="about-slideshow-image">
+        </div>
+        <button class="about-slideshow-arrow about-slideshow-arrow-right" aria-label="Volgende foto">&#10095;</button>
+      </div>
+    </div>
+    <div class="about-text">
+      <p data-key="about-text">
+        Welkom bij BOUM — waar smaak en stijl samenkomen in het hart van Diest.  
+        Met een passie voor lekker eten, een warme sfeer en community vibes bieden we meer dan alleen een hap — we bieden een ervaring. Of je nu zin hebt in comfort food of bijpraat met vrienden, BOUM is the place to be.     
+      </p>
+    </div>
+  </div>
+</section>
+<section id="menu" class="section menu-section">
+  <!-- menu 3D container verwijderd -->
+  <div class="menu-image-wrapper">
+    <img src="img/menu.jpg" alt="BOUM Menu" class="menu-image">
+  </div>
+  <div class="menu-download">
+    <a href="img/menu.jpg" download title="Download menu">
+      <img src="img/menu icon.png" alt="Menu PDF Icon" class="menu-download-icon">
+      <span class="menu-download-text"></span>
+    </a>
+  </div>
+</section>
+  <section id="blog" class="section blog-section">
+    <div class="blog-header">
+      <button id="open-blog-modal" class="blog-modal-btn">Blog over ons</button>
+    </div>
+    <div id="blog-modal" class="blog-modal hidden">
+      <div class="blog-modal-content">
+        <span id="close-blog-modal" class="blog-modal-close">&times;</span>
+        <form id="blog-form">
+          <input type="text" id="blog-title" placeholder="Titel van je blog" required />
+          <textarea id="blog-content" placeholder="Schrijf hier je verhaal..." required></textarea>
+          <label for="blog-image" class="blog-image-label">Afbeelding toevoegen (optioneel):</label>
+          <input type="file" id="blog-image" accept="image/*" />
+          <button type="submit">Plaats Blog</button>
+        </form>
+      </div>
+    </div>
+  <div id="blog-list" class="blog-list-horizontal"></div>
+  </section>
+  <section id="location" class="section location-section">
+  <!-- location 3D container verwijderd -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.857540713616!2d5.034325615778615!3d50.97919037952609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0c6a9f6871093%3A0x1bfe42920a5ff191!2sDemerstraat%2015%2C%203290%20Diest!5e0!3m2!1sen!2sbe!4v1690146981563!5m2!1sen!2sbe"
+        title="Google Maps showing the location of BOUM in Diest"
+        allowfullscreen loading="lazy">
+      </iframe>
+    </div>
+    <div class="address-text">
+      <h2>BOUM</h2>
+      <p data-key="address-line1">Demerstraat 15<br>3290 Diest</p>
+      <p data-key="phone">Tel: 0123/456789</p>
+    </div>
+  </section>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
