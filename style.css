@@ -1,3 +1,12 @@
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+/* Verberg elk vast element onderaan de pagina dat niet hoort */
+body > div[style*="position: fixed"], body > div[style*="bottom"], body > div[style*="height: 100vh"], body > div[style*="width: 100vw"] {
+  display: none !important;
+}
 @media (max-width: 700px) {
   .blog-modal-close {
     display: none !important;
@@ -154,6 +163,7 @@
   font-size: 2rem;
   color: #000;
   cursor: pointer;
+  display: none !important;
 }
 .blog-modal-btn {
   background: #000;
